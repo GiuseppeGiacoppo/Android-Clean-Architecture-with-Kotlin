@@ -9,15 +9,15 @@ import me.giacoppo.examples.kotlin.mvp.repository.interactor.executor.ThreadExec
 /**
  * Created by Peppe on 17/06/2017.
  */
-class GetPopularTVShows: UseCase<List<Show>,Unit> {
+class GetPopularTVShows: UseCase<List<Show>,Void?> {
     private val repository: ShowsRepository
 
     constructor(repository: ShowsRepository, threadExecutor: ThreadExecutor, postExecutionThread: PostExecutionThread): super(threadExecutor,postExecutionThread){
         this.repository = repository
     }
 
-    override fun buildUseCaseObservable(params: Unit): Observable<List<Show>> {
-        return repository.populars();
+    override fun buildUseCaseObservable(unused: Void?): Observable<List<Show>> {
+        return repository.populars()
     }
 
 }
