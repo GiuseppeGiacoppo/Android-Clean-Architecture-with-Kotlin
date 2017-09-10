@@ -159,5 +159,6 @@
     <orderEntry type="library" name="support-compat-25.4.0" level="project" />
     <orderEntry type="library" name="animated-vector-drawable-25.4.0" level="project" />
     <orderEntry type="module" module-name="core" />
+    <orderEntry type="library" name="android-android-25" level="project" />
   </component>
 </module>

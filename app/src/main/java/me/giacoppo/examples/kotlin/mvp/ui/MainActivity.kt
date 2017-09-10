@@ -2,6 +2,9 @@ package me.giacoppo.examples.kotlin.mvp.ui
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.view.View
 import android.widget.TextView
 import me.giacoppo.examples.kotlin.mvp.R
 import me.giacoppo.examples.kotlin.mvp.bean.Show
@@ -11,12 +14,15 @@ import me.giacoppo.examples.kotlin.mvp.data.source.tmdb.TMDBShowsRepository
 import me.giacoppo.examples.kotlin.mvp.repository.interactor.GetPopularTVShows
 import me.giacoppo.examples.kotlin.mvp.repository.interactor.executor.JobExecutor
 import me.giacoppo.examples.kotlin.mvp.ui.contract.PopularContract
-import java.util.*
 
 
 class MainActivity : AppCompatActivity(), PopularContract.View {
-    private lateinit var text: TextView
+    private lateinit var showsList: RecyclerView
+    private lateinit var message: TextView
+    private lateinit var progress: View
+
     private lateinit var presenter : PopularContract.Presenter
+    private lateinit var adapter : ShowsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,25 +32,66 @@ class MainActivity : AppCompatActivity(), PopularContract.View {
                 JobExecutor.instance,
                 UIThread.instance)
 
+        //init presenter
         presenter = PopularPresenter(this,getPopularUseCase)
-        text = findViewById(R.id.result) as TextView
 
+        //init views
+        showsList = findViewById(R.id.result)
+        message = findViewById(R.id.message)
+        progress = findViewById(R.id.progress)
+
+        adapter = ShowsAdapter()
+        showsList.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
+        showsList.adapter = adapter
+
+        //query
         presenter.findPopularShows()
     }
 
     override fun showResults(results: List<Show>) {
-        text.setText(Arrays.deepToString(results.toTypedArray()))
+        adapter.addAll(results)
+        setState(1)
     }
 
     override fun showNoResults() {
-        text.setText("No results found")
+        adapter.clear()
+        message.setText("No shows found")
+        setState(2)
     }
 
     override fun showLoader() {
-        text.setText("Loading")
+        setState(0)
     }
 
     override fun showError() {
-        text.setText("Error finding shows")
+        message.setText("Error finding shows")
+        setState(2)
+    }
+
+    /**
+     * 1: loading
+     * 2: show results
+     * 3: show a message
+     */
+    private fun setState(state: Int): Unit {
+        when(state) {
+            0 -> {
+                progress.visibility = View.VISIBLE
+                message.visibility = View.GONE
+                showsList.visibility = View.GONE
+            }
+
+            1 -> {
+                progress.visibility = View.GONE
+                message.visibility = View.GONE
+                showsList.visibility = View.VISIBLE
+            }
+
+            2 -> {
+                progress.visibility = View.GONE
+                message.visibility = View.VISIBLE
+                showsList.visibility = View.GONE
+            }
+        }
     }
 }

@@ -128,5 +128,6 @@
     <orderEntry type="library" name="kotlin-stdlib-jre7-1.1.4-3" level="project" />
     <orderEntry type="library" name="annotations-13.0" level="project" />
     <orderEntry type="library" name="rxjava-2.1.0" level="project" />
+    <orderEntry type="library" name="android-android-25" level="project" />
   </component>
 </module>

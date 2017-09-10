@@ -6,8 +6,24 @@
     android:orientation="vertical"
     tools:context="me.giacoppo.examples.kotlin.mvp.ui.MainActivity">
 
-    <TextView
-        android:id="@+id/result"
+    <ProgressBar
+        android:id="@+id/progress"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:visibility="gone"
+        android:layout_gravity="center_horizontal"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/result"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </LinearLayout>
