@@ -8,5 +8,5 @@ import me.giacoppo.examples.kotlin.mvp.bean.Show
  */
 interface ShowsRepository {
     fun populars(): Observable<List<Show>>
-    fun show(id: String): Observable<Show>
+    fun show(id: Int): Observable<Show>
 }

@@ -16,5 +16,5 @@ interface TMDBDataSource {
     fun getPopularShows(): Observable<TVResults>
 
     @GET("tv/{tv_id}")
-    fun getShow(@Path("tv_id") id: String): Observable<TVShow>
+    fun getShow(@Path("tv_id") id: Int): Observable<TVShow>
 }

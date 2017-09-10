@@ -2,4 +2,5 @@
 <resources>
     <dimen name="item_show_height">56dp</dimen>
     <dimen name="margin_medium">16dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
 </resources>

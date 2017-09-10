@@ -1,4 +1,4 @@
-package me.giacoppo.examples.kotlin.mvp.ui
+package me.giacoppo.examples.kotlin.mvp.ui.home
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -7,11 +7,12 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.item_show.view.*
 import me.giacoppo.examples.kotlin.mvp.R
 import me.giacoppo.examples.kotlin.mvp.bean.Show
+import me.giacoppo.examples.kotlin.mvp.ui.callbacks.ClickListener
 
 /**
  * Created by Peppe on 10/09/2017.
  */
-class ShowsAdapter : RecyclerView.Adapter<ShowsAdapter.ViewHolder>() {
+class ShowsAdapter(private val clickListener: ClickListener<Show>) : RecyclerView.Adapter<ShowsAdapter.ViewHolder>() {
     private val shows: MutableList<Show> by lazy { ArrayList<Show>() }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -24,23 +25,33 @@ class ShowsAdapter : RecyclerView.Adapter<ShowsAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(shows[position])
+        holder.bind(shows[position], position,clickListener)
     }
 
-    fun addAll(items: List<Show>): Unit {
+    fun addAll(items: List<Show>) {
         shows.clear()
         shows.addAll(items)
         notifyDataSetChanged()
     }
 
-    fun clear(): Unit {
+    fun clear() {
         shows.clear()
         notifyDataSetChanged()
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(item: Show) = with(itemView) {
+
+        fun bind(item: Show, idx: Int, clickListener: ClickListener<Show>) {
+            if (idx % 2 == 0)
+                itemView.setBackgroundResource(R.color.primary_light_bg)
+            else
+                itemView.setBackgroundResource(R.color.secondary_light_bg)
+
             itemView.name.setText(item.title)
+
+            itemView.setOnClickListener { View.OnClickListener() {
+                clickListener.onClick(itemView,item)
+            } }
         }
 
     }

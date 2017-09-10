@@ -20,5 +20,5 @@ class GetShow: UseCase<Show,GetShow.Params> {
         return repository.show(params.id);
     }
 
-    class Params( val id: String)
+    class Params( val id: Int)
 }

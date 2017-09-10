@@ -16,7 +16,7 @@ class TMDBShowsRepository(private val source: TMDBDataSource) : ShowsRepository{
         return source.getPopularShows().map{it.results!!.map(TVShowMapper::transform)}
     }
 
-    override fun show(id: String): Observable<Show> {
+    override fun show(id: Int): Observable<Show> {
         return source.getShow(id).map(TVShowMapper::transform)
     }
 }

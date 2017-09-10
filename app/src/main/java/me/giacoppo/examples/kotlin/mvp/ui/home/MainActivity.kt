@@ -1,7 +1,7 @@
-package me.giacoppo.examples.kotlin.mvp.ui
+package me.giacoppo.examples.kotlin.mvp.ui.home
 
+import android.app.Activity
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
@@ -13,16 +13,19 @@ import me.giacoppo.examples.kotlin.mvp.data.source.tmdb.TMDBRetrofitService
 import me.giacoppo.examples.kotlin.mvp.data.source.tmdb.TMDBShowsRepository
 import me.giacoppo.examples.kotlin.mvp.repository.interactor.GetPopularTVShows
 import me.giacoppo.examples.kotlin.mvp.repository.interactor.executor.JobExecutor
+import me.giacoppo.examples.kotlin.mvp.ui.DetailActivity
+import me.giacoppo.examples.kotlin.mvp.ui.PopularPresenter
+import me.giacoppo.examples.kotlin.mvp.ui.callbacks.ClickListener
 import me.giacoppo.examples.kotlin.mvp.ui.contract.PopularContract
 
 
-class MainActivity : AppCompatActivity(), PopularContract.View {
+class MainActivity : Activity(), PopularContract.View, ClickListener<Show> {
     private lateinit var showsList: RecyclerView
     private lateinit var message: TextView
     private lateinit var progress: View
 
-    private lateinit var presenter : PopularContract.Presenter
-    private lateinit var adapter : ShowsAdapter
+    private lateinit var presenter: PopularContract.Presenter
+    private lateinit var adapter: ShowsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,15 +36,15 @@ class MainActivity : AppCompatActivity(), PopularContract.View {
                 UIThread.instance)
 
         //init presenter
-        presenter = PopularPresenter(this,getPopularUseCase)
+        presenter = PopularPresenter(this, getPopularUseCase)
 
         //init views
         showsList = findViewById(R.id.result)
         message = findViewById(R.id.message)
         progress = findViewById(R.id.progress)
 
-        adapter = ShowsAdapter()
-        showsList.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
+        adapter = ShowsAdapter(this)
+        showsList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         showsList.adapter = adapter
 
         //query
@@ -68,13 +71,17 @@ class MainActivity : AppCompatActivity(), PopularContract.View {
         setState(2)
     }
 
+    override fun onClick(v: View, item: Show) {
+        startActivity(DetailActivity.getIntent(this, item))
+    }
+
     /**
      * 1: loading
      * 2: show results
      * 3: show a message
      */
-    private fun setState(state: Int): Unit {
-        when(state) {
+    private fun setState(state: Int) {
+        when (state) {
             0 -> {
                 progress.visibility = View.VISIBLE
                 message.visibility = View.GONE
