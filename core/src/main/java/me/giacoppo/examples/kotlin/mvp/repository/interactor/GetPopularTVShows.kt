@@ -16,7 +16,7 @@ class GetPopularTVShows: UseCase<List<Show>,Void?> {
         this.repository = repository
     }
 
-    override fun buildUseCaseObservable(unused: Void?): Observable<List<Show>> {
+    override fun buildUseCaseObservable(params: Void?): Observable<List<Show>> {
         return repository.populars()
     }
 

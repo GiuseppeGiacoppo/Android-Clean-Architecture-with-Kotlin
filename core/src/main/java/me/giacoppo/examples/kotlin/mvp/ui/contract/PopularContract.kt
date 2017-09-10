@@ -12,6 +12,7 @@ interface PopularContract {
         fun showResults(results: List<Show>)
         fun showNoResults()
         fun showLoader()
+        fun showError()
     }
 
     interface Presenter {

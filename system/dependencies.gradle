@@ -5,15 +5,18 @@ allprojects {
 }
 
 ext {
+    applicationId = "me.giacoppo.examples.kotlin.mvp.app"
     compileSdkVersion = 25
     buildToolsVersion = "25.0.3"
+    versionCode = 1
+    versionName = "1.0.0"
 
     minSdkVersion = 21
     targetSdkVersion =  25
 
 
     gsonVersion = '2.8.0'
-    okhttpVersion = '3.6.0'
+    okhttpVersion = '3.9.0'
     retrofitVersion = '2.3.0'
     rxJavaVersion = '2.1.0'
     rxAndroidVersion =  '2.0.1'

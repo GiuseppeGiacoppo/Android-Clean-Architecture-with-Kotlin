@@ -10,12 +10,7 @@ import me.giacoppo.examples.kotlin.mvp.repository.ShowsRepository
  *
  * @author Giuseppe Giacoppo
  */
-class TMDBShowsRepository: ShowsRepository{
-    private val source: TMDBDataSource
-
-    constructor(source: TMDBDataSource) {
-        this.source = source
-    }
+class TMDBShowsRepository(private val source: TMDBDataSource) : ShowsRepository{
 
     override fun populars(): Observable<List<Show>> {
         return source.getPopularShows().map{it.results!!.map(TVShowMapper::transform)}

@@ -4,6 +4,7 @@ import io.reactivex.Observable
 import me.giacoppo.examples.kotlin.mvp.data.source.tmdb.model.TVResults
 import me.giacoppo.examples.kotlin.mvp.data.source.tmdb.model.TVShow
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 /**
  * TMDB Api Interface
@@ -11,9 +12,9 @@ import retrofit2.http.GET
  * @author Giuseppe Giacoppo
  */
 interface TMDBDataSource {
-    @GET("")
+    @GET("tv/popular")
     fun getPopularShows(): Observable<TVResults>
 
-    @GET("")
-    fun getShow(id: String): Observable<TVShow>
+    @GET("tv/{tv_id}")
+    fun getShow(@Path("tv_id") id: String): Observable<TVShow>
 }
