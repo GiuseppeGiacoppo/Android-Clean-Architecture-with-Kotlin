@@ -136,18 +136,19 @@
     <orderEntry type="library" scope="TEST" name="espresso-idling-resource-2.2.2" level="project" />
     <orderEntry type="library" name="kotlin-stdlib-jre8-1.1.4-3" level="project" />
     <orderEntry type="library" name="support-media-compat-26.0.2" level="project" />
-    <orderEntry type="library" name="constraint-layout-1.0.2" level="project" />
     <orderEntry type="library" name="recyclerview-v7-26.0.2" level="project" />
     <orderEntry type="library" name="kotlin-stdlib-jre7-1.1.4-3" level="project" />
     <orderEntry type="library" scope="TEST" name="hamcrest-library-1.3" level="project" />
+    <orderEntry type="library" name="glide-4.1.1" level="project" />
     <orderEntry type="library" scope="TEST" name="hamcrest-integration-1.3" level="project" />
     <orderEntry type="library" name="support-vector-drawable-26.0.2" level="project" />
     <orderEntry type="library" name="support-core-utils-26.0.2" level="project" />
+    <orderEntry type="library" name="annotations-4.1.1" level="project" />
     <orderEntry type="library" scope="TEST" name="jsr305-2.0.1" level="project" />
+    <orderEntry type="library" name="gifdecoder-4.1.1" level="project" />
     <orderEntry type="library" scope="TEST" name="espresso-core-2.2.2" level="project" />
     <orderEntry type="library" name="support-compat-26.0.2" level="project" />
     <orderEntry type="library" scope="TEST" name="exposed-instrumentation-api-publish-0.5" level="project" />
-    <orderEntry type="library" name="constraint-layout-solver-1.0.2" level="project" />
     <orderEntry type="library" scope="TEST" name="rules-0.5" level="project" />
     <orderEntry type="library" scope="TEST" name="javax.annotation-api-1.2" level="project" />
     <orderEntry type="library" name="annotations-13.0" level="project" />
@@ -160,6 +161,7 @@
     <orderEntry type="library" scope="TEST" name="javawriter-2.1.1" level="project" />
     <orderEntry type="library" scope="TEST" name="hamcrest-core-1.3" level="project" />
     <orderEntry type="library" scope="TEST" name="junit-4.12" level="project" />
+    <orderEntry type="library" name="disklrucache-4.1.1" level="project" />
     <orderEntry type="module" module-name="data" />
     <orderEntry type="module" module-name="core" />
   </component>

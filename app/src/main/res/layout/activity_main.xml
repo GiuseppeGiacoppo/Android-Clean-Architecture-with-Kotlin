@@ -6,6 +6,8 @@
     android:orientation="vertical"
     tools:context="me.giacoppo.examples.kotlin.mvp.ui.home.MainActivity">
 
+    <include layout="@layout/include_toolbar" />
+
     <ProgressBar
         android:id="@+id/progress"
         android:layout_width="wrap_content"
@@ -18,9 +20,9 @@
         android:id="@+id/message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/margin_medium"
-        android:visibility="gone"
-        android:layout_gravity="center_horizontal"/>
+        android:visibility="gone" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/result"

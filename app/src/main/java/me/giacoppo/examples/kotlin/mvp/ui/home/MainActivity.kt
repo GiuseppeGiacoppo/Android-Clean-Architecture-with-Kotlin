@@ -1,9 +1,10 @@
 package me.giacoppo.examples.kotlin.mvp.ui.home
 
-import android.app.Activity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.Toolbar
 import android.view.View
 import android.widget.TextView
 import me.giacoppo.examples.kotlin.mvp.R
@@ -19,7 +20,7 @@ import me.giacoppo.examples.kotlin.mvp.ui.callbacks.ClickListener
 import me.giacoppo.examples.kotlin.mvp.ui.contract.PopularContract
 
 
-class MainActivity : Activity(), PopularContract.View, ClickListener<Show> {
+class MainActivity : AppCompatActivity(), PopularContract.View, ClickListener<Show> {
     private lateinit var showsList: RecyclerView
     private lateinit var message: TextView
     private lateinit var progress: View
@@ -30,6 +31,10 @@ class MainActivity : Activity(), PopularContract.View, ClickListener<Show> {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+
         val getPopularUseCase = GetPopularTVShows(
                 TMDBShowsRepository(TMDBRetrofitService.instance.getService()),
                 JobExecutor.instance,
@@ -76,9 +81,9 @@ class MainActivity : Activity(), PopularContract.View, ClickListener<Show> {
     }
 
     /**
-     * 1: loading
-     * 2: show results
-     * 3: show a message
+     * 0: loading
+     * 1: show results
+     * 2: show a message
      */
     private fun setState(state: Int) {
         when (state) {

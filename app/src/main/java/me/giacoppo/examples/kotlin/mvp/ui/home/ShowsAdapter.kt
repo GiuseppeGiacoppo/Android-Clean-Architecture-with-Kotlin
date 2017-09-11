@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_show.view.*
 import me.giacoppo.examples.kotlin.mvp.R
 import me.giacoppo.examples.kotlin.mvp.bean.Show
@@ -25,7 +26,7 @@ class ShowsAdapter(private val clickListener: ClickListener<Show>) : RecyclerVie
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(shows[position], position,clickListener)
+        holder.bind(shows[position], position, clickListener)
     }
 
     fun addAll(items: List<Show>) {
@@ -48,10 +49,10 @@ class ShowsAdapter(private val clickListener: ClickListener<Show>) : RecyclerVie
                 itemView.setBackgroundResource(R.color.secondary_light_bg)
 
             itemView.name.setText(item.title)
+            itemView.short_desc.setText(item.description)
+            Glide.with(itemView.cover.context).load(item.posterUrl).into(itemView.cover)
 
-            itemView.setOnClickListener { View.OnClickListener() {
-                clickListener.onClick(itemView,item)
-            } }
+            itemView.setOnClickListener({v -> clickListener.onClick(v,item)})
         }
 
     }
