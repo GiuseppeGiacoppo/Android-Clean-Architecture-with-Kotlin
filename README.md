@@ -16,9 +16,13 @@ Learn more:
 Technologies and Libraries
 -----------------
 Kotlin
+
 MVP
+
 Clean Architecture
+
 Retrofit
+
 Gson
 
 ## Contributing
