@@ -4,10 +4,6 @@ import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import me.giacoppo.examples.kotlin.mvp.repository.interactor.executor.PostExecutionThread
 
-
-/**
- * Created by Peppe on 17/06/2017.
- */
 class UIThread : PostExecutionThread {
     private object Holder {
         var instance = UIThread()

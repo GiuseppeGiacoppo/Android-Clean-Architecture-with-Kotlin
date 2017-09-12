@@ -13,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class TMDBRetrofitService {
 
     private object Holder {
-        val instance = TMDBRetrofitService();
+        val instance = TMDBRetrofitService()
     }
 
     private fun getRetrofit(): Retrofit {
@@ -31,9 +31,5 @@ class TMDBRetrofitService {
 
     companion object {
         val instance: TMDBRetrofitService by lazy { Holder.instance }
-
-        fun getService():TMDBDataSource {
-            return instance.getService()
-        }
     }
 }

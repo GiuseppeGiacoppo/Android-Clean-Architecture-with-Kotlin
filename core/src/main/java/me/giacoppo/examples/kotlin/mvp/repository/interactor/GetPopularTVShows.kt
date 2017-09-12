@@ -6,18 +6,8 @@ import me.giacoppo.examples.kotlin.mvp.repository.ShowsRepository
 import me.giacoppo.examples.kotlin.mvp.repository.interactor.executor.PostExecutionThread
 import me.giacoppo.examples.kotlin.mvp.repository.interactor.executor.ThreadExecutor
 
-/**
- * Created by Peppe on 17/06/2017.
- */
-class GetPopularTVShows: UseCase<List<Show>,Void?> {
-    private val repository: ShowsRepository
-
-    constructor(repository: ShowsRepository, threadExecutor: ThreadExecutor, postExecutionThread: PostExecutionThread): super(threadExecutor,postExecutionThread){
-        this.repository = repository
-    }
-
+class GetPopularTVShows(private val repository: ShowsRepository, threadExecutor: ThreadExecutor, postExecutionThread: PostExecutionThread) : UseCase<List<Show>, Void?>(threadExecutor, postExecutionThread) {
     override fun buildUseCaseObservable(params: Void?): Observable<List<Show>> {
         return repository.populars()
     }
-
 }

@@ -10,9 +10,6 @@ import me.giacoppo.examples.kotlin.mvp.R
 import me.giacoppo.examples.kotlin.mvp.bean.Show
 import me.giacoppo.examples.kotlin.mvp.ui.callbacks.ClickListener
 
-/**
- * Created by Peppe on 10/09/2017.
- */
 class ShowsAdapter(private val clickListener: ClickListener<Show>) : RecyclerView.Adapter<ShowsAdapter.ViewHolder>() {
     private val shows: MutableList<Show> by lazy { ArrayList<Show>() }
 

@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity(), PopularContract.View, ClickListener<Sh
 
     override fun showNoResults() {
         adapter.clear()
-        message.setText("No shows found")
+        message.text = "No shows found"
         setState(2)
     }
 
@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity(), PopularContract.View, ClickListener<Sh
     }
 
     override fun showError() {
-        message.setText("Error finding shows")
+        message.text = "Error finding shows"
         setState(2)
     }
 

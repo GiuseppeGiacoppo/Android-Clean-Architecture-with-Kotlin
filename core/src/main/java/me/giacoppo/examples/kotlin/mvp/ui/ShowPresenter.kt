@@ -5,9 +5,6 @@ import me.giacoppo.examples.kotlin.mvp.repository.interactor.DefaultObserver
 import me.giacoppo.examples.kotlin.mvp.repository.interactor.GetShow
 import me.giacoppo.examples.kotlin.mvp.ui.contract.ShowContract
 
-/**
- * Created by Peppe on 10/09/2017.
- */
 class ShowPresenter(private val view: ShowContract.View, private val getShowUseCase: GetShow): ShowContract.Presenter {
 
     override fun findShow(id: Int) {

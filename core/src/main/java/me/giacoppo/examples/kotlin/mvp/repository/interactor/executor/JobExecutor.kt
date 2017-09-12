@@ -5,9 +5,6 @@ import java.util.concurrent.LinkedBlockingQueue
 import java.util.concurrent.ThreadPoolExecutor
 import java.util.concurrent.TimeUnit
 
-/**
- * Created by Peppe on 17/06/2017.
- */
 class JobExecutor private constructor() : ThreadExecutor {
     private val INITIAL_POOL_SIZE = 3
     private val MAX_POOL_SIZE = 5

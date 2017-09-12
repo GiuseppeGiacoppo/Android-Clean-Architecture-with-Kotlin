@@ -5,27 +5,19 @@ import okhttp3.OkHttpClient
 import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 
-
-
-
-/**
- * Created by Peppe on 30/07/2017.
- */
 class NetworkModule {
     private object Holder {
-        private val loggingInterceptor: HttpLoggingInterceptor
+        private val loggingInterceptor: HttpLoggingInterceptor = HttpLoggingInterceptor()
         private val tmdbInterceptor: TMDBInterceptor
         init {
-            loggingInterceptor = HttpLoggingInterceptor()
             loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.HEADERS)
-
             tmdbInterceptor = TMDBInterceptor()
         }
 
         val client = OkHttpClient.Builder()
                 .addInterceptor(tmdbInterceptor)
                 .addInterceptor(loggingInterceptor)
-                .build();
+                .build()
     }
 
     companion object {
@@ -34,7 +26,7 @@ class NetworkModule {
 
     private class TMDBInterceptor : Interceptor {
         val API_KEY_PARAM = "api_key"
-        val API_KEY = "164690508d8fb0ef9183587d7ff0bd51"
+        val API_KEY = "YOUR_KEY"
 
         override fun intercept(chain: Interceptor.Chain?): Response {
             val originalRequest = chain!!.request()

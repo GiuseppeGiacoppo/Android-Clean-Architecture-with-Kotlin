@@ -8,15 +8,12 @@ import io.reactivex.schedulers.Schedulers
 import me.giacoppo.examples.kotlin.mvp.repository.interactor.executor.PostExecutionThread
 import me.giacoppo.examples.kotlin.mvp.repository.interactor.executor.ThreadExecutor
 
-/**
- * Created by Peppe on 17/06/2017.
- */
 abstract class UseCase<T, Params>(private val threadExecutor: ThreadExecutor, private val postExecutionThread : PostExecutionThread) {
     private val disposables = CompositeDisposable()
 
     abstract fun buildUseCaseObservable(params: Params) : Observable<T>
 
-    fun execute(observer: DisposableObserver<T>, params: Params): Unit {
+    fun execute(observer: DisposableObserver<T>, params: Params) {
         val observable = buildUseCaseObservable(params)
                 .subscribeOn(Schedulers.from(threadExecutor))
                 .observeOn(postExecutionThread.getScheduler())
@@ -24,12 +21,12 @@ abstract class UseCase<T, Params>(private val threadExecutor: ThreadExecutor, pr
         addDisposable(observable.subscribeWith(observer))
     }
 
-    fun dispose(): Unit {
+    fun dispose() {
         if (!disposables.isDisposed)
             disposables.dispose()
     }
 
-    private fun addDisposable(disposable: Disposable): Unit {
+    private fun addDisposable(disposable: Disposable) {
         disposables.add(disposable)
     }
 }
