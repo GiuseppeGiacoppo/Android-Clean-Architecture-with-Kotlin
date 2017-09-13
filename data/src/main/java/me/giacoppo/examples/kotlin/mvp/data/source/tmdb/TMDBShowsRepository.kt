@@ -11,12 +11,13 @@ import me.giacoppo.examples.kotlin.mvp.repository.ShowsRepository
  * @author Giuseppe Giacoppo
  */
 class TMDBShowsRepository(private val source: TMDBDataSource) : ShowsRepository{
+    private val mapper by lazy { TVShowMapper() }
 
     override fun populars(): Observable<List<Show>> {
-        return source.getPopularShows().map{it.results!!.map(TVShowMapper::transform)}
+        return source.getPopularShows().map{it.results.map(mapper)}
     }
 
     override fun show(id: Int): Observable<Show> {
-        return source.getShow(id).map(TVShowMapper::transform)
+        return source.getShow(id).map(mapper)
     }
 }

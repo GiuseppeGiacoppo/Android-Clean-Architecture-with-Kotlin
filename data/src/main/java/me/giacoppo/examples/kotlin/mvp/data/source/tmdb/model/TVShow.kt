@@ -38,7 +38,7 @@ data class TVShow(
 	val name: String? = null,
 
 	@field:SerializedName("id")
-	val id: Int? = null,
+	val id: Int,
 
 	@field:SerializedName("vote_count")
 	val voteCount: Int? = null
