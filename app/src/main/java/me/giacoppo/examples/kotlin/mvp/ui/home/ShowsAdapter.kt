@@ -14,8 +14,7 @@ class ShowsAdapter(private val clickListener: ClickListener<Show>) : RecyclerVie
     private val shows: MutableList<Show> by lazy { ArrayList<Show>() }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_show, parent, false)
-        return ViewHolder(view)
+        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_show, parent, false))
     }
 
     override fun getItemCount(): Int {
@@ -40,16 +39,22 @@ class ShowsAdapter(private val clickListener: ClickListener<Show>) : RecyclerVie
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(item: Show, idx: Int, clickListener: ClickListener<Show>) {
-            if (idx % 2 == 0)
-                itemView.setBackgroundResource(R.color.primary_light_bg)
-            else
-                itemView.setBackgroundResource(R.color.secondary_light_bg)
+            with(itemView) {
+                val bgColor: Int
 
-            itemView.name.setText(item.title)
-            itemView.short_desc.setText(item.description)
-            Glide.with(itemView.cover.context).load(item.posterUrl).into(itemView.cover)
+                if (idx % 2 == 0)
+                    bgColor = R.color.primary_light_bg
+                else
+                    bgColor = R.color.secondary_light_bg
 
-            itemView.setOnClickListener({v -> clickListener.onClick(v,item)})
+                setBackgroundResource(bgColor)
+
+                name.setText(item.title)
+                short_desc.setText(item.description)
+                Glide.with(cover.context).load(item.posterUrl).into(itemView.cover)
+
+                setOnClickListener({ v -> clickListener.onClick(v, item) })
+            }
         }
 
     }
