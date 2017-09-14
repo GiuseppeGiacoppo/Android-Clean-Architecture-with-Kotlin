@@ -14,6 +14,7 @@ ext {
     minSdkVersion = 21
     targetSdkVersion = 26
 
+    kotlinVersion = '1.1.4-3'
     supportVersion = '26.0.2'
     glideVersion = '4.1.1'
     gsonVersion = '2.8.0'
@@ -23,6 +24,7 @@ ext {
     rxAndroidVersion = '2.0.1'
 
     libraries = [
+            kotlin                  : "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion",
             appCompat               : "com.android.support:appcompat-v7:${supportVersion}",
             recyclerView            : "com.android.support:recyclerview-v7:${supportVersion}",
             glide                   : "com.github.bumptech.glide:glide:${glideVersion}",
