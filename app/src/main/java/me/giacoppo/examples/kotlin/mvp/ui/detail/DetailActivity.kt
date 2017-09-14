@@ -1,4 +1,4 @@
-package me.giacoppo.examples.kotlin.mvp.ui
+package me.giacoppo.examples.kotlin.mvp.ui.detail
 
 import android.content.Context
 import android.content.Intent
@@ -17,6 +17,7 @@ import me.giacoppo.examples.kotlin.mvp.data.source.tmdb.TMDBRetrofitService
 import me.giacoppo.examples.kotlin.mvp.data.source.tmdb.TMDBShowsRepository
 import me.giacoppo.examples.kotlin.mvp.repository.interactor.GetShow
 import me.giacoppo.examples.kotlin.mvp.repository.interactor.executor.JobExecutor
+import me.giacoppo.examples.kotlin.mvp.ui.ShowPresenter
 import me.giacoppo.examples.kotlin.mvp.ui.contract.ShowContract
 
 class DetailActivity : AppCompatActivity(), ShowContract.View {

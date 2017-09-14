@@ -26,7 +26,7 @@ class NetworkModule {
 
     private class TMDBInterceptor : Interceptor {
         val API_KEY_PARAM = "api_key"
-        val API_KEY = "YOUR_KEY"
+        val API_KEY = "164690508d8fb0ef9183587d7ff0bd51"
 
         override fun intercept(chain: Interceptor.Chain?): Response {
             val originalRequest = chain!!.request()

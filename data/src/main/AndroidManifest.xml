@@ -1,2 +1,1 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="me.giacoppo.examples.kotlin.mvp.data" />
+<manifest package="me.giacoppo.examples.kotlin.mvp.data" />

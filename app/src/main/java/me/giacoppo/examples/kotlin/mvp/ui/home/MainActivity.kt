@@ -14,13 +14,12 @@ import me.giacoppo.examples.kotlin.mvp.data.source.tmdb.TMDBRetrofitService
 import me.giacoppo.examples.kotlin.mvp.data.source.tmdb.TMDBShowsRepository
 import me.giacoppo.examples.kotlin.mvp.repository.interactor.GetPopularTVShows
 import me.giacoppo.examples.kotlin.mvp.repository.interactor.executor.JobExecutor
-import me.giacoppo.examples.kotlin.mvp.ui.DetailActivity
 import me.giacoppo.examples.kotlin.mvp.ui.PopularPresenter
-import me.giacoppo.examples.kotlin.mvp.ui.callbacks.ClickListener
 import me.giacoppo.examples.kotlin.mvp.ui.contract.PopularContract
+import me.giacoppo.examples.kotlin.mvp.ui.detail.DetailActivity
 
 
-class MainActivity : AppCompatActivity(), PopularContract.View, ClickListener<Show> {
+class MainActivity : AppCompatActivity(), PopularContract.View {
     private lateinit var showsList: RecyclerView
     private lateinit var message: TextView
     private lateinit var progress: View
@@ -48,7 +47,7 @@ class MainActivity : AppCompatActivity(), PopularContract.View, ClickListener<Sh
         message = findViewById(R.id.message)
         progress = findViewById(R.id.progress)
 
-        adapter = ShowsAdapter(this)
+        adapter = ShowsAdapter({v,item -> startActivity(DetailActivity.getIntent(this, item))})
         showsList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         showsList.adapter = adapter
 
@@ -74,10 +73,6 @@ class MainActivity : AppCompatActivity(), PopularContract.View, ClickListener<Sh
     override fun showError() {
         message.text = "Error finding shows"
         setState(2)
-    }
-
-    override fun onClick(v: View, item: Show) {
-        startActivity(DetailActivity.getIntent(this, item))
     }
 
     /**
