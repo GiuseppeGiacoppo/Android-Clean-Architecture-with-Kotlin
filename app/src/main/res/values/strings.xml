@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MVP Kotlin Example</string>
+    <string name="app_name_debug">MVP Kotlin Example Debug</string>
 </resources>

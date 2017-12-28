@@ -17,11 +17,12 @@ android {
 
     buildTypes {
         debug {
-
+            addManifestPlaceholders([APP_NAME: "@string/app_name_debug", APP_ICON: "@mipmap/ic_launcher", APP_ICON_ROUNDED: "@mipmap/ic_launcher_round"])
         }
 
         release {
             minifyEnabled false
+            addManifestPlaceholders([APP_NAME: "@string/app_name", APP_ICON: "@mipmap/ic_launcher", APP_ICON_ROUNDED: "@mipmap/ic_launcher_round"])
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
